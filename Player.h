@@ -2,8 +2,9 @@
 
 #include <string>
 #include <SFML/Network.hpp>
+#include <SFML/Graphics.hpp>
 
-class Player
+class Player : public sf::Transformable
 {
 public:
 	Player(sf::IpAddress addr, std::string name, unsigned int port);

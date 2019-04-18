@@ -123,13 +123,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="ProjectilesManager.cpp" />
     <ClCompile Include="Server.cpp" />
+    <ClCompile Include="SocketManager.cpp" />
+    <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="Zombie.cpp" />
+    <ClCompile Include="ZombiesManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Projectile.h" />
+    <ClInclude Include="ProjectilesManager.h" />
     <ClInclude Include="Server.h" />
+    <ClInclude Include="SocketManager.h" />
+    <ClInclude Include="Utils.h" />
+    <ClInclude Include="Zombie.h" />
+    <ClInclude Include="ZombiesManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
