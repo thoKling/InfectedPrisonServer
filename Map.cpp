@@ -1,24 +1,38 @@
 #include "Map.h"
 
-
+#include <iostream>
+#include <fstream>
 
 Map::Map()
 {
-	// création intiale de la map
-	for (size_t i = 0; i < 16; i++)
+	std::ifstream infile;
+	infile.open("Map/map.txt");
+	if (!infile)
 	{
-		std::vector<int> temp;
-		for (size_t j = 0; j < 32; j++)
-		{
-			if (j == 0 || j == 31 || i == 0 || i == 15)
-				temp.push_back(41);
-			else if (j == 5 && (i <= 5))
-				temp.push_back(41);
-			else
-				temp.push_back(10);
-		}
-		_tiles.push_back(temp);
+		std::cout << "There was an error opening the file.\n";
 	}
+
+	char ch;
+	int currentNumber = 0;
+	std::vector<int> temp;
+
+	while (!infile.eof()) {
+		infile.get(ch);
+
+		if (ch == ',') {
+			temp.push_back(currentNumber);
+			currentNumber = 0;
+		}
+		else if (ch == '\n') {
+			_tiles.push_back(temp);
+			temp.clear();
+		}
+		else {
+			int ia = ch - '0';
+			currentNumber = currentNumber * 10 + ia;
+		}
+	}
+	_tiles.push_back(temp);
 }
 
 

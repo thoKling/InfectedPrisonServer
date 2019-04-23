@@ -10,6 +10,7 @@ public:
 	void update();
 	bool isDead();
 	void receiveHit(sf::Vector2f hitterPosition);
+	bool isInZombie();
 private:
 	bool _beingHit = false;
 	unsigned int _lifes = 3;

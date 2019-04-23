@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Fichiers sources">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Fichiers d%27en-tête">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Fichiers de ressources">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -16,72 +8,108 @@
     <Filter Include="Sources">
       <UniqueIdentifier>{60117cef-acbb-43ca-a85e-97118fbb607b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Items">
+      <UniqueIdentifier>{269f3502-0067-4e08-b3fe-f61eac771a82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Entities">
+      <UniqueIdentifier>{55e55123-22d3-438d-8de1-d5a916091736}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Map">
+      <UniqueIdentifier>{0339efed-16bb-4d22-bad0-0b95defcf3d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Core">
+      <UniqueIdentifier>{78b909df-85f3-4059-a323-2ba2da671e99}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Server.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="ZombiesManager.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="SocketManager.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Zombie.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Item.cpp">
+      <Filter>Sources\Items</Filter>
     </ClCompile>
     <ClCompile Include="ProjectilesManager.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Sources\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Sources\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Sources\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Projectile.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Sources\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Zombie.cpp">
+      <Filter>Sources\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="ZombiesManager.cpp">
+      <Filter>Sources\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Sources\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Server.cpp">
+      <Filter>Sources\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SocketManager.cpp">
+      <Filter>Sources\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Sources\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Sources\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Ammo.cpp">
+      <Filter>Sources\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Sources\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemsManager.cpp">
+      <Filter>Sources\Items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Server.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+    <ClInclude Include="Item.h">
+      <Filter>Sources\Items</Filter>
     </ClInclude>
     <ClInclude Include="ZombiesManager.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="SocketManager.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Sources\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Zombie.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Sources\Entities</Filter>
     </ClInclude>
     <ClInclude Include="ProjectilesManager.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Sources\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Projectile.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Sources\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Sources\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Sources\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Sources\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="SocketManager.h">
+      <Filter>Sources\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Server.h">
+      <Filter>Sources\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Sources\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Ammo.h">
+      <Filter>Sources\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Sources\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemsManager.h">
+      <Filter>Sources\Items</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

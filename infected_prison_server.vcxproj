@@ -123,7 +123,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Ammo.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemsManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -132,11 +135,15 @@
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="SocketManager.cpp" />
     <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="Zombie.cpp" />
     <ClCompile Include="ZombiesManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ammo.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemsManager.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Projectile.h" />
@@ -144,6 +151,7 @@
     <ClInclude Include="Server.h" />
     <ClInclude Include="SocketManager.h" />
     <ClInclude Include="Utils.h" />
+    <ClInclude Include="Weapon.h" />
     <ClInclude Include="Zombie.h" />
     <ClInclude Include="ZombiesManager.h" />
   </ItemGroup>

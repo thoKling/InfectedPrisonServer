@@ -16,8 +16,11 @@ void ZombiesManager::destroyZombies()
 
 // créé un nouveau zombie et renvoit l'id de ce dernier
 unsigned int ZombiesManager::createZombie(const sf::Vector2f& pos) {
-	_zombies[_nextId] = new Zombie(_nextId);
-	_zombies[_nextId]->setPosition(pos);
+	Zombie* temp = new Zombie(_nextId);
+	temp->setPosition(pos);
+	if (temp->isInZombie())
+		temp->move(50, 0);
+	_zombies[_nextId] = temp;
 	_nextId++;
 	sf::Packet packet;
 	packet << SocketManager::PacketType::CreateZombie << pos;

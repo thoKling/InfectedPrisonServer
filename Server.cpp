@@ -3,6 +3,8 @@
 #include "SocketManager.h"
 #include "ZombiesManager.h"
 #include "ProjectilesManager.h"
+#include "Weapon.h"
+#include "ItemsManager.h"
 
 #include <iostream>
 
@@ -20,8 +22,9 @@ Server::~Server()
 void Server::start() {
 	sf::Thread threadSocket(&SocketManager::start);
 	threadSocket.launch();
-
-	ZombiesManager::createZombie({ 450,150 });
+	Item* item = new Weapon();
+	item->setPosition(500, 500);
+	ItemsManager::addItem(item);
 	///
 	/// Boucle principale
 	///
@@ -42,6 +45,22 @@ void Server::start() {
 
 void Server::update()
 {
+	_tick++;
+	if (_zombiesSpawned < _currentWave*4 && _tick % 300 == 0 && SocketManager::getPlayers().size() > 0) {
+		for (size_t i = 0; i < _currentWave; i++)
+		{
+			ZombiesManager::createZombie(sf::Vector2f(450 + rand() % 100, 150 + rand() % 100));
+		}
+		_zombiesSpawned++;
+		_tick = 0;
+	}
+	if (_zombiesSpawned == _currentWave * 4 && ZombiesManager::getZombies().size() == 0) {
+		_zombiesSpawned = 0;
+		_currentWave++;
+		sf::Packet packet;
+		packet << SocketManager::PacketType::NextWave << _currentWave;
+		SocketManager::broadcastPacket(packet);
+	}
 	ZombiesManager::update();
 	ProjectilesManager::update();
 }

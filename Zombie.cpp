@@ -2,6 +2,7 @@
 
 #include "Utils.h"
 #include "SocketManager.h"
+#include "ZombiesManager.h"
 
 Zombie::Zombie(unsigned int id) : _id(id)
 {
@@ -61,7 +62,7 @@ void Zombie::receiveHit(sf::Vector2f hitterPosition)
 		for (size_t i = 0; i < 20; i++)
 		{
 			move(vecUnit.x * 5, 0);
-			if (isInObstacle()) {
+			if (isInObstacle() || isInZombie()) {
 				move(-vecUnit.x * 5, 0);
 				break;
 			}
@@ -69,7 +70,7 @@ void Zombie::receiveHit(sf::Vector2f hitterPosition)
 		for (size_t i = 0; i < 20; i++)
 		{
 			move(0, vecUnit.y * 5);
-			if (isInObstacle()) {
+			if (isInObstacle() || isInZombie()) {
 				move(0, -vecUnit.y * 5);
 				break;
 			}
@@ -86,12 +87,23 @@ void Zombie::myMove()
 	sf::Vector2f vecUnit = Utils::getVecUnit(getPosition(), _target);
 
 	this->move(vecUnit.x * _velocity, 0);
-	if (isInObstacle()) {
+	if (isInObstacle() || isInZombie()) {
 		this->move(-vecUnit.x * _velocity, 0);
 	}
 
 	this->move(0, vecUnit.y*_velocity);
-	if (isInObstacle()) {
+	if (isInObstacle() || isInZombie()) {
 		this->move(0, -vecUnit.y * _velocity);
 	}
+}
+
+bool Zombie::isInZombie()
+{
+	for (auto zombie = ZombiesManager::getZombies().begin(); zombie != ZombiesManager::getZombies().end() ; zombie++)
+	{
+		if (zombie->second != this && zombie->second->getGlobalBounds().intersects(getGlobalBounds())) {
+			return true;
+		}
+	}
+	return false;
 }

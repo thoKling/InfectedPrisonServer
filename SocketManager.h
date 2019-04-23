@@ -4,6 +4,7 @@
 
 #include "Player.h"
 #include "Map.h"
+#include "Item.h"
 
 #define NB_PLAYERS 4
 
@@ -19,6 +20,9 @@ public:
 		ZombieState,
 		ZombieReceiveHit,
 		PlayerReceiveHit,
+		NextWave,
+		CreateItem,
+		DeleteItem,
 	};
 
 	static void start();
@@ -35,8 +39,12 @@ private:
 	static void handlePlayerPos(sf::Packet packet);
 	static void handleProjectile(sf::Packet packet);
 	static void handlePlayerConnection(sf::Packet packet, sf::IpAddress playerAddr, unsigned int port);
+	static void handleDeleteItem(sf::Packet packet);
+	static void handleCreateItem(sf::Packet packet);
 };
 
+sf::Packet& operator <<(sf::Packet& packet, Item* item);
+sf::Packet& operator >>(sf::Packet& packet, Item** item);
 sf::Packet& operator <<(sf::Packet& packet, const std::vector<std::vector<int>>& myVec);
 template<typename T>
 inline sf::Packet & operator>>(sf::Packet & packet, sf::Vector2<T>& vec);

@@ -2,6 +2,9 @@
 
 #include "ZombiesManager.h"
 #include "ProjectilesManager.h"
+#include "ItemsManager.h"
+#include "Weapon.h"
+#include "Ammo.h"
 
 #include <iostream>
 
@@ -28,6 +31,12 @@ void SocketManager::start()
 			break;
 		case PacketType::Projectile:
 			handleProjectile(packet);
+			break;
+		case PacketType::CreateItem:
+			handleCreateItem(packet);
+			break;
+		case PacketType::DeleteItem:
+			handleDeleteItem(packet);
 			break;
 		default:
 			std::cout << "Unknown packetType from " << sender << std::endl;
@@ -140,11 +149,61 @@ void SocketManager::handlePlayerConnection(sf::Packet packet, sf::IpAddress play
 		_socket.send(zombieCreation, playerAddr, port);
 	}
 	///
+	/// On lui envoie les items
+	///
+	for (auto item = ItemsManager::getItems().begin(); item != ItemsManager::getItems().end(); item++) {
+		sf::Packet itemCreation;
+		itemCreation << PacketType::CreateItem << *item;
+		_socket.send(itemCreation, playerAddr, port);
+	}
+	///
 	/// On annonce à tous le monde que le joueur vient de se connecter
 	///
 	sf::Packet broadcast;
 	broadcast << PacketType::Connection << name;
 	broadcastPacket(broadcast, name);
+}
+
+void SocketManager::handleDeleteItem(sf::Packet packet)
+{
+	std::string name;
+	Item* item;
+	packet >> &item >> name;
+	ItemsManager::deleteItem(item);
+	sf::Packet broadcast;
+	broadcast << PacketType::DeleteItem << item;
+	broadcastPacket(broadcast, name);
+}
+
+void SocketManager::handleCreateItem(sf::Packet packet)
+{
+	Item* item;
+	packet >> &item;
+	ItemsManager::addItem(item);
+}
+
+sf::Packet & operator<<(sf::Packet & packet, Item * item)
+{
+	packet << item->getType() << item->getStack() << item->getPosition();
+	return packet;
+}
+
+sf::Packet & operator>>(sf::Packet & packet, Item ** item)
+{
+	std::string type;
+	unsigned int stack;
+	sf::Vector2f position;
+	packet >> type >> stack >> position;
+
+	if (type == "Weapon") {
+		*item = new Weapon();
+	}
+	else if (type == "Ammo") {
+		*item = new Ammo(WeaponType::Gun);
+	}
+	(*item)->setStack(stack);
+	(*item)->setPosition(position);
+	return packet;
 }
 
 sf::Packet& operator <<(sf::Packet& packet, const std::vector<std::vector<int>>& myVec)
@@ -158,6 +217,7 @@ sf::Packet& operator <<(sf::Packet& packet, const std::vector<std::vector<int>>&
 	}
 	return packet;
 }
+
 template<typename T>
 inline sf::Packet & operator>>(sf::Packet & packet, sf::Vector2<T>& vec)
 {
@@ -165,8 +225,6 @@ inline sf::Packet & operator>>(sf::Packet & packet, sf::Vector2<T>& vec)
 	packet >> vec.y;
 	return packet;
 }
-
-
 
 template <typename T>
 inline sf::Packet& operator <<(sf::Packet& packet, const sf::Vector2<T>& vec)
