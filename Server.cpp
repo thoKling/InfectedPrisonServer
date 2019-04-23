@@ -4,6 +4,7 @@
 #include "ZombiesManager.h"
 #include "ProjectilesManager.h"
 #include "Weapon.h"
+#include "Ammo.h"
 #include "ItemsManager.h"
 
 #include <iostream>
@@ -50,6 +51,10 @@ void Server::update()
 		for (size_t i = 0; i < _currentWave; i++)
 		{
 			ZombiesManager::createZombie(sf::Vector2f(450 + rand() % 100, 150 + rand() % 100));
+			Item* item = new Ammo(WeaponType::Gun);
+			item->setPosition(500, 500);
+			item->setStack(4);
+			ItemsManager::addItem(item);
 		}
 		_zombiesSpawned++;
 		_tick = 0;
