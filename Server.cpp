@@ -11,9 +11,7 @@
 
 Server::Server()
 {
-
 }
-
 
 Server::~Server()
 {
@@ -24,7 +22,10 @@ void Server::start() {
 	sf::Thread threadSocket(&SocketManager::start);
 	threadSocket.launch();
 	Item* item = new Weapon();
-	item->setPosition(500, 500);
+	item->setPosition(856, 870);
+	Item* item1 = new Weapon();
+	item1->setPosition(1156, 600);
+	ItemsManager::addItem(item1);
 	ItemsManager::addItem(item);
 	///
 	/// Boucle principale
@@ -50,9 +51,9 @@ void Server::update()
 	if (_zombiesSpawned < _currentWave*4 && _tick % 300 == 0 && SocketManager::getPlayers().size() > 0) {
 		for (size_t i = 0; i < _currentWave; i++)
 		{
-			ZombiesManager::createZombie(sf::Vector2f(450 + rand() % 100, 150 + rand() % 100));
+			ZombiesManager::createZombie(sf::Vector2f(1200 + rand() % 100, 1000 + rand() % 100));
 			Item* item = new Ammo(WeaponType::Gun);
-			item->setPosition(500, 500);
+			item->setPosition(1956, 600);
 			item->setStack(4);
 			ItemsManager::addItem(item);
 		}

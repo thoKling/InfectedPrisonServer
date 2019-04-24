@@ -56,5 +56,5 @@ bool Map::isObstacle(const sf::Vector2i & pos)
 	if (pos.x >= _tiles[0].size() || pos.y >= _tiles.size()) {
 		return 1;
 	}
-	return _tiles[pos.y][pos.x] == 41;
+	return !((_tiles[pos.y][pos.x] == 10) || (_tiles[pos.y][pos.x] == 319));
 }
